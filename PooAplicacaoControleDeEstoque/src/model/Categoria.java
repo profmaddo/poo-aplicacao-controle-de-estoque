@@ -1,7 +1,9 @@
+package model;
+
 import java.util.List;
 
 /**
- * Classe Categoria
+ * Classe model.Categoria
  *
  *  id - Integer - PK do banco de dados
  *  nome - String - Nome da categoria

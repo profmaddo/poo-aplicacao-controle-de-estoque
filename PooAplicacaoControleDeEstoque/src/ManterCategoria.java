@@ -1,4 +1,6 @@
 
+import model.Categoria;
+
 import java.util.ArrayList;
 import java.util.List;
 
