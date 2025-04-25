@@ -1,3 +1,5 @@
+import model.Categoria;
+
 import java.math.BigDecimal;
 
 /**
@@ -9,7 +11,7 @@ public class Produto {
     private Integer id;
     private String nome;
 
-    // Só existe produto se Categoria, UnidadeDeMedida
+    // Só existe produto se model.Categoria, UnidadeDeMedida
     // e Forcecedor existir
     private Categoria categoria;
     private UnidadeDeMedida unidadeDeMedida;

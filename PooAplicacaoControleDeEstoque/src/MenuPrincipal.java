@@ -1,3 +1,5 @@
+import model.Categoria;
+
 /**
  * Classe principal do Contole de Estoque
  */
