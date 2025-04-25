@@ -1,3 +1,5 @@
+package model;
+
 /**
  * Classe destinada para criar
  * fornecedores dos produtos
