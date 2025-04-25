@@ -1,4 +1,5 @@
 import model.Categoria;
+import model.Fornecedor;
 import model.UnidadeDeMedida;
 
 import java.math.BigDecimal;
