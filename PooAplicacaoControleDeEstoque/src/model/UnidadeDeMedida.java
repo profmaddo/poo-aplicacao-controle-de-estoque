@@ -1,3 +1,5 @@
+package model;
+
 /**
  * Classe para manter a descrição das
  * uniades de medidas dos produtos
@@ -5,7 +7,7 @@
 public class UnidadeDeMedida {
 
     private Integer id;
-    private String nome;
+    private String descricao;
 
     public Integer getId() {
         return id;
@@ -15,11 +17,11 @@ public class UnidadeDeMedida {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 }
