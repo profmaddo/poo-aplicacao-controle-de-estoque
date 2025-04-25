@@ -1,3 +1,5 @@
+package model;
+
 /**
  * Classe de controle de acesso
  * dos usuários do sistema
