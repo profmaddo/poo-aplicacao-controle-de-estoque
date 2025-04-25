@@ -8,7 +8,7 @@ import java.util.List;
  *  id - Integer - PK do banco de dados
  *  nome - String - Nome da categoria
  *  Relacionamento 1:n
- *  Produtos - Lista de produtos (Produto)
+ *  Produtos - Lista de produtos (model.Produto)
  *
  */
 
