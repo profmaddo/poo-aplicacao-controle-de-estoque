@@ -1,3 +1,5 @@
+import model.Usuario;
+
 /**
  * Classe destinada a gerenciar
  * a entrada e saída de produtos
