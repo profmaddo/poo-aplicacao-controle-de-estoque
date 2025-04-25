@@ -1,3 +1,5 @@
+import model.UnidadeDeMedida;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,19 +23,19 @@ public class ManterUnidadeDeMedida {
 
         UnidadeDeMedida unidadeDeMedidaKilo = new UnidadeDeMedida();
         unidadeDeMedidaKilo.setId(1);
-        unidadeDeMedidaKilo.setNome("Kilo");
+        unidadeDeMedidaKilo.setDescricao("Kilo");
 
         medidaList.add(unidadeDeMedidaKilo);
 
         UnidadeDeMedida unidadeDeMedidaMetro = new UnidadeDeMedida();
         unidadeDeMedidaMetro.setId(2);
-        unidadeDeMedidaMetro.setNome("Metro");
+        unidadeDeMedidaMetro.setDescricao("Metro");
 
         medidaList.add(unidadeDeMedidaMetro);
 
         UnidadeDeMedida unidadeDeMedidaTonelada = new UnidadeDeMedida();
         unidadeDeMedidaTonelada.setId(3);
-        unidadeDeMedidaTonelada.setNome("Tonelada");
+        unidadeDeMedidaTonelada.setDescricao("Tonelada");
 
         medidaList.add(unidadeDeMedidaTonelada);
 
@@ -57,11 +59,11 @@ public class ManterUnidadeDeMedida {
 
         UnidadeDeMedida unidadeDeMedida = new UnidadeDeMedida();
         unidadeDeMedida.setId(1);
-        unidadeDeMedida.setNome("Kilo");
+        unidadeDeMedida.setDescricao("Kilo");
 
         imprimirDados(unidadeDeMedida);
 
-        unidadeDeMedida.setNome("Kg");
+        unidadeDeMedida.setDescricao("Kg");
 
         imprimirDados(unidadeDeMedida);
 
@@ -74,19 +76,19 @@ public class ManterUnidadeDeMedida {
 
         UnidadeDeMedida unidadeDeMedidaKilo = new UnidadeDeMedida();
         unidadeDeMedidaKilo.setId(1);
-        unidadeDeMedidaKilo.setNome("Kilo");
+        unidadeDeMedidaKilo.setDescricao("Kilo");
 
         medidaList.add(unidadeDeMedidaKilo);
 
         UnidadeDeMedida unidadeDeMedidaMetro = new UnidadeDeMedida();
         unidadeDeMedidaMetro.setId(2);
-        unidadeDeMedidaMetro.setNome("Metro");
+        unidadeDeMedidaMetro.setDescricao("Metro");
 
         medidaList.add(unidadeDeMedidaMetro);
 
         UnidadeDeMedida unidadeDeMedidaTonelada = new UnidadeDeMedida();
         unidadeDeMedidaTonelada.setId(3);
-        unidadeDeMedidaTonelada.setNome("Tonelada");
+        unidadeDeMedidaTonelada.setDescricao("Tonelada");
 
         medidaList.add(unidadeDeMedidaTonelada);
 
@@ -107,19 +109,19 @@ public class ManterUnidadeDeMedida {
 
         UnidadeDeMedida unidadeDeMedidaKilo = new UnidadeDeMedida();
         unidadeDeMedidaKilo.setId(1);
-        unidadeDeMedidaKilo.setNome("Kilo");
+        unidadeDeMedidaKilo.setDescricao("Kilo");
 
         medidaList.add(unidadeDeMedidaKilo);
 
         UnidadeDeMedida unidadeDeMedidaMetro = new UnidadeDeMedida();
         unidadeDeMedidaMetro.setId(2);
-        unidadeDeMedidaMetro.setNome("Metro");
+        unidadeDeMedidaMetro.setDescricao("Metro");
 
         medidaList.add(unidadeDeMedidaMetro);
 
         UnidadeDeMedida unidadeDeMedidaTonelada = new UnidadeDeMedida();
         unidadeDeMedidaTonelada.setId(3);
-        unidadeDeMedidaTonelada.setNome("Tonelada");
+        unidadeDeMedidaTonelada.setDescricao("Tonelada");
 
         medidaList.add(unidadeDeMedidaTonelada);
 
@@ -138,7 +140,7 @@ public class ManterUnidadeDeMedida {
 
         UnidadeDeMedida unidadeDeMedida = new UnidadeDeMedida();
         unidadeDeMedida.setId(1);
-        unidadeDeMedida.setNome("Kilo");
+        unidadeDeMedida.setDescricao("Kilo");
 
         imprimirDados(unidadeDeMedida);
 
@@ -149,7 +151,7 @@ public class ManterUnidadeDeMedida {
 
         System.out.println("*** DADOS DA UNIDADE DE MEDIDA ***");
         System.out.println("ID:   :"+unidadeDeMedida.getId());
-        System.out.println("Nome: :"+unidadeDeMedida.getNome());
+        System.out.println("Nome: :"+unidadeDeMedida.getDescricao());
 
 
     }
