@@ -1,3 +1,4 @@
+import model.Produto;
 import model.Usuario;
 
 /**
