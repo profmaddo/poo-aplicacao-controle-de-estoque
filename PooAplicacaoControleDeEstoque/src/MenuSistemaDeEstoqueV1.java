@@ -308,6 +308,8 @@ public class MenuSistemaDeEstoqueV1 {
             System.out.println("\n=== Menu Usuário ===");
             System.out.println("1 - Cadastrar Usuário");
             System.out.println("2 - Listar Usuários");
+            System.out.println("3 - Atualizar Usuário");
+            System.out.println("4 - Deletar Usuário");
             System.out.println("0 - Voltar");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
@@ -332,6 +334,25 @@ public class MenuSistemaDeEstoqueV1 {
                     for (Usuario u : usuarios) {
                         System.out.println("ID: " + u.getId() + " | Nome: " + u.getNome() + " | Tipo: " + u.getTipoUsuario());
                     }
+                }
+                case 3 -> {
+                    System.out.print("ID do usuário para atualizar: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    Usuario usuario = usuarioDAO.buscarPorId(id);
+                    if (usuario != null) {
+                        System.out.print("Novo nome do usuário: ");
+                        usuario.setNome(scanner.nextLine());
+                        usuarioDAO.atualizar(usuario);
+                    } else {
+                        System.out.println("⚠️ Usuário não encontrado.");
+                    }
+                }
+                case 4 -> {
+                    System.out.print("ID do usuário para deletar: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    usuarioDAO.deletar(id);
                 }
                 case 0 -> System.out.println("Voltando...");
                 default -> System.out.println("⚠️ Opção inválida.");
