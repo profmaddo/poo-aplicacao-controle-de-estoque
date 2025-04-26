@@ -11,10 +11,23 @@ public class Movimentacao {
 
     private int id;
     private Produto produto;
-    private Tipo tipo;
+    private Tipo tipo;                // Tipo de movimentação (ENTRADA ou SAIDA)
     private int quantidade;
     private Date dataMovimentacao;
     private Usuario usuario;
+
+    // Construtor vazio
+    public Movimentacao() {
+    }
+
+    // Construtor completo (opcional para criar movimentações rapidamente)
+    public Movimentacao(Produto produto, Tipo tipo, int quantidade, Date dataMovimentacao, Usuario usuario) {
+        this.produto = produto;
+        this.tipo = tipo;
+        this.quantidade = quantidade;
+        this.dataMovimentacao = dataMovimentacao;
+        this.usuario = usuario;
+    }
 
     // Getters e Setters
 
@@ -65,4 +78,19 @@ public class Movimentacao {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    // Métodos auxiliares opcionais para melhorar o uso
+
+    @Override
+    public String toString() {
+        return "Movimentacao{" +
+                "id=" + id +
+                ", produto=" + (produto != null ? produto.getNome() : "N/A") +
+                ", tipo=" + tipo +
+                ", quantidade=" + quantidade +
+                ", dataMovimentacao=" + dataMovimentacao +
+                ", usuario=" + (usuario != null ? usuario.getNome() : "N/A") +
+                '}';
+    }
 }
+
