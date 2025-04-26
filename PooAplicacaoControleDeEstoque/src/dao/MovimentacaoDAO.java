@@ -19,7 +19,7 @@ public class MovimentacaoDAO {
     // Inserir nova movimentação
     public void inserir(Movimentacao movimentacao) {
         String sql = """
-            INSERT INTO movimentacao (produto_id, tipo_movimentacao, quantidade, data_movimentacao, usuario_id)
+            INSERT INTO movimentacoes (produto_id, tipo, quantidade, data_movimentacao, usuario_id)
             VALUES (?, ?, ?, ?, ?);
         """;
 
@@ -42,7 +42,7 @@ public class MovimentacaoDAO {
     public List<Movimentacao> listarTodos() {
         List<Movimentacao> movimentacoes = new ArrayList<>();
 
-        String sql = "SELECT * FROM movimentacao;";
+        String sql = "SELECT * FROM movimentacoes;";
 
         try (Connection conn = ConexaoSQLite.conectar();
              Statement stmt = conn.createStatement();
@@ -56,7 +56,7 @@ public class MovimentacaoDAO {
                 produto.setId(rs.getInt("produto_id"));
                 movimentacao.setProduto(produto);
 
-                movimentacao.setTipo(Tipo.valueOf(rs.getString("tipo_movimentacao")));
+                movimentacao.setTipo(Tipo.valueOf(rs.getString("tipo")));
                 movimentacao.setQuantidade(rs.getInt("quantidade"));
 
                 Date data = FORMATADOR_DATA.parse(rs.getString("data_movimentacao"));
@@ -79,7 +79,7 @@ public class MovimentacaoDAO {
     // Buscar uma movimentação por ID
     public Movimentacao buscarPorId(int id) {
         Movimentacao movimentacao = null;
-        String sql = "SELECT * FROM movimentacao WHERE id = ?;";
+        String sql = "SELECT * FROM movimentacoes WHERE id = ?;";
 
         try (Connection conn = ConexaoSQLite.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -95,7 +95,7 @@ public class MovimentacaoDAO {
                 produto.setId(rs.getInt("produto_id"));
                 movimentacao.setProduto(produto);
 
-                movimentacao.setTipo(Tipo.valueOf(rs.getString("tipo_movimentacao")));
+                movimentacao.setTipo(Tipo.valueOf(rs.getString("tipo")));
                 movimentacao.setQuantidade(rs.getInt("quantidade"));
 
                 Date data = FORMATADOR_DATA.parse(rs.getString("data_movimentacao"));
@@ -116,8 +116,8 @@ public class MovimentacaoDAO {
     // Atualizar uma movimentação (⚠️ normalmente movimentações não são atualizadas, mas vamos permitir aqui)
     public void atualizar(Movimentacao movimentacao) {
         String sql = """
-            UPDATE movimentacao
-            SET produto_id = ?, tipo_movimentacao = ?, quantidade = ?, data_movimentacao = ?, usuario_id = ?
+            UPDATE movimentacoes
+            SET produto_id = ?, tipo = ?, quantidade = ?, data_movimentacao = ?, usuario_id = ?
             WHERE id = ?;
         """;
 
@@ -139,7 +139,7 @@ public class MovimentacaoDAO {
 
     // Deletar uma movimentação
     public void deletar(int id) {
-        String sql = "DELETE FROM movimentacao WHERE id = ?;";
+        String sql = "DELETE FROM movimentacoes WHERE id = ?;";
 
         try (Connection conn = ConexaoSQLite.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
