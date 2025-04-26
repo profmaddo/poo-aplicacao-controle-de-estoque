@@ -1,6 +1,5 @@
-
-
 import dao.*;
+import helper.Util;
 import model.*;
 
 import java.math.BigDecimal;
@@ -11,6 +10,7 @@ import java.util.Scanner;
 public class MenuSistemaDeEstoqueV1 {
 
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
         int opcao;
 
@@ -32,8 +32,9 @@ public class MenuSistemaDeEstoqueV1 {
             System.out.println("5 - Gerenciar Usuário");
             System.out.println("6 - Gerenciar Movimentação");
             System.out.println("0 - Sair");
-            System.out.print("Escolha uma opção: ");
-            opcao = scanner.nextInt();
+
+            opcao = Util.lerInt(scanner, "Escolha uma Opção: ");
+            //opcao = scanner.nextInt();
             scanner.nextLine(); // Consumir quebra de linha
 
             switch (opcao) {
@@ -189,8 +190,9 @@ public class MenuSistemaDeEstoqueV1 {
                     unidade.setId(scanner.nextInt());
                     produto.setUnidadeMedida(unidade);
 
-                    System.out.print("Preço de Custo: ");
-                    produto.setPrecoCusto(scanner.nextBigDecimal());
+                     System.out.print("Preço de Custo: ");
+                     produto.setPrecoCusto(scanner.nextBigDecimal());
+                  //  produto.setPrecoCusto(lerBigDecimal(scanner,"Preço de Custo: "));
 
                     System.out.print("Preço de Venda: ");
                     produto.setPrecoVenda(scanner.nextBigDecimal());
@@ -385,4 +387,6 @@ public class MenuSistemaDeEstoqueV1 {
             }
         } while (opcao != 0);
     }
+
+
 }
