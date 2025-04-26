@@ -230,6 +230,8 @@ public class MenuSistemaDeEstoqueV1 {
             System.out.println("\n=== Menu Fornecedor ===");
             System.out.println("1 - Cadastrar Fornecedor");
             System.out.println("2 - Listar Fornecedores");
+            System.out.println("3 - Atualizar Fornecedor");
+            System.out.println("4 - Deletar Fornecedor");
             System.out.println("0 - Voltar");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
@@ -254,6 +256,25 @@ public class MenuSistemaDeEstoqueV1 {
                     for (Fornecedor f : fornecedores) {
                         System.out.println("ID: " + f.getId() + " | Nome: " + f.getNome() + " | CNPJ: " + f.getCnpj());
                     }
+                }
+                case 3 -> {
+                    System.out.print("ID do fornecedor para atualizar: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    Fornecedor fornecedor = fornecedorDAO.buscarPorId(id);
+                    if (fornecedor != null) {
+                        System.out.print("Novo nome do fornecedor: ");
+                        fornecedor.setNome(scanner.nextLine());
+                        fornecedorDAO.atualizar(fornecedor);
+                    } else {
+                        System.out.println("⚠️ Fornecedor não encontrado.");
+                    }
+                }
+                case 4 -> {
+                    System.out.print("ID do fornecedor para deletar: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    fornecedorDAO.deletar(id);
                 }
                 case 0 -> System.out.println("Voltando...");
                 default -> System.out.println("⚠️ Opção inválida.");
