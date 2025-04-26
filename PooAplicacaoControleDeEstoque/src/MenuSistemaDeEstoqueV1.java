@@ -108,12 +108,14 @@ public class MenuSistemaDeEstoqueV1 {
         } while (opcao != 0);
     }
 
-    private static void submenuUnidadeMedida(UnidadeDeMedidaDAO UnidadeDeMedidaDAO, Scanner scanner) {
+    private static void submenuUnidadeMedida(UnidadeDeMedidaDAO unidadeMedidaDAO, Scanner scanner) {
         int opcao;
         do {
             System.out.println("\n=== Menu Unidade de Medida ===");
             System.out.println("1 - Cadastrar Unidade de Medida");
             System.out.println("2 - Listar Unidades de Medida");
+            System.out.println("3 - Atualizar Unidade de Medida");
+            System.out.println("4 - Deletar Unidade de Medida");
             System.out.println("0 - Voltar");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
@@ -122,17 +124,35 @@ public class MenuSistemaDeEstoqueV1 {
             switch (opcao) {
                 case 1 -> {
                     System.out.print("Descrição da unidade: ");
-                    String descricao = scanner.nextLine();
                     UnidadeDeMedida unidade = new UnidadeDeMedida();
-                    unidade.setDescricao(descricao);
-                    UnidadeDeMedidaDAO.inserir(unidade);
+                    unidade.setDescricao(scanner.nextLine());
+                    unidadeMedidaDAO.inserir(unidade);
                 }
                 case 2 -> {
-                    List<UnidadeDeMedida> unidades = UnidadeDeMedidaDAO.listarTodos();
+                    List<UnidadeDeMedida> unidades = unidadeMedidaDAO.listarTodos();
                     System.out.println("\n📋 Lista de Unidades:");
                     for (UnidadeDeMedida u : unidades) {
                         System.out.println("ID: " + u.getId() + " | Descrição: " + u.getDescricao());
                     }
+                }
+                case 3 -> {
+                    System.out.print("ID da unidade para atualizar: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    UnidadeDeMedida unidade = unidadeMedidaDAO.buscarPorId(id);
+                    if (unidade != null) {
+                        System.out.print("Nova descrição da unidade: ");
+                        unidade.setDescricao(scanner.nextLine());
+                        unidadeMedidaDAO.atualizar(unidade);
+                    } else {
+                        System.out.println("⚠️ Unidade de medida não encontrada.");
+                    }
+                }
+                case 4 -> {
+                    System.out.print("ID da unidade para deletar: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    unidadeMedidaDAO.deletar(id);
                 }
                 case 0 -> System.out.println("Voltando...");
                 default -> System.out.println("⚠️ Opção inválida.");
