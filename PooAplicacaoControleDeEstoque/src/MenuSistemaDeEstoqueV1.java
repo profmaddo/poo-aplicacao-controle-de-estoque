@@ -21,6 +21,9 @@ public class MenuSistemaDeEstoqueV1 {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         MovimentacaoDAO movimentacaoDAO = new MovimentacaoDAO();
 
+        // 🔒 Tela de login antes de liberar o sistema
+        Usuario usuarioLogado = telaLogin(scanner, usuarioDAO);
+
         do {
             System.out.println("\n======================================");
             System.out.println("         Sistema de Estoque");
@@ -52,6 +55,35 @@ public class MenuSistemaDeEstoqueV1 {
 
         scanner.close();
     }
+
+
+    private static Usuario telaLogin(Scanner scanner, UsuarioDAO usuarioDAO) {
+        System.out.println("\n🔒 Tela de Login - Sistema de Estoque 🔒");
+
+        Usuario usuarioAutenticado = null;
+
+        while (usuarioAutenticado == null) {
+            String email = Util.lerString(scanner, "Email: ");
+            String senha = Util.lerString(scanner, "Senha: ");
+
+            // Buscar o usuário no banco de dados pelo email
+            List<Usuario> usuarios = usuarioDAO.listarTodos();
+            for (Usuario u : usuarios) {
+                if (u.getEmail().equalsIgnoreCase(email) && u.getSenhaHash().equals(senha)) {
+                    usuarioAutenticado = u;
+                    break;
+                }
+            }
+
+            if (usuarioAutenticado == null) {
+                System.out.println("⚠️ Login ou senha inválidos. Tente novamente.\n");
+            }
+        }
+
+        System.out.println("\n✅ Login efetuado com sucesso! Bem-vindo, " + usuarioAutenticado.getNome() + ".");
+        return usuarioAutenticado;
+    }
+
 
     // SUBMENUS
 
@@ -408,6 +440,7 @@ public class MenuSistemaDeEstoqueV1 {
             }
         } while (opcao != 0);
     }
+
 
 
 }
