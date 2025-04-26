@@ -8,25 +8,23 @@ import java.math.BigDecimal;
  */
 public class Produto {
 
-    private Integer id;
+    private int id;
     private String nome;
-
-    // Só existe produto se model.Categoria, model.UnidadeDeMedida
-    // e Forcecedor existir
+    private BigDecimal precoCusto;
+    private BigDecimal precoVenda;
+    private int estoqueMinimo;
+    private int estoqueAtual;
     private Categoria categoria;
-    private UnidadeDeMedida unidadeDeMedida;
+    private UnidadeDeMedida unidadeMedida;
     private Fornecedor fornecedor;
 
-    private BigDecimal precoDeCusto;
-    private BigDecimal precoDeVenda;
-    private Integer estoqueAtual;
-    private Integer estoqueMinimo;
+    // Getters e Setters
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -38,6 +36,38 @@ public class Produto {
         this.nome = nome;
     }
 
+    public BigDecimal getPrecoCusto() {
+        return precoCusto;
+    }
+
+    public void setPrecoCusto(BigDecimal precoCusto) {
+        this.precoCusto = precoCusto;
+    }
+
+    public BigDecimal getPrecoVenda() {
+        return precoVenda;
+    }
+
+    public void setPrecoVenda(BigDecimal precoVenda) {
+        this.precoVenda = precoVenda;
+    }
+
+    public int getEstoqueMinimo() {
+        return estoqueMinimo;
+    }
+
+    public void setEstoqueMinimo(int estoqueMinimo) {
+        this.estoqueMinimo = estoqueMinimo;
+    }
+
+    public int getEstoqueAtual() {
+        return estoqueAtual;
+    }
+
+    public void setEstoqueAtual(int estoqueAtual) {
+        this.estoqueAtual = estoqueAtual;
+    }
+
     public Categoria getCategoria() {
         return categoria;
     }
@@ -46,12 +76,12 @@ public class Produto {
         this.categoria = categoria;
     }
 
-    public UnidadeDeMedida getUnidadeDeMedida() {
-        return unidadeDeMedida;
+    public UnidadeDeMedida getUnidadeMedida() {
+        return unidadeMedida;
     }
 
-    public void setUnidadeDeMedida(UnidadeDeMedida unidadeDeMedida) {
-        this.unidadeDeMedida = unidadeDeMedida;
+    public void setUnidadeMedida(UnidadeDeMedida unidadeMedida) {
+        this.unidadeMedida = unidadeMedida;
     }
 
     public Fornecedor getFornecedor() {
@@ -60,37 +90,5 @@ public class Produto {
 
     public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
-    }
-
-    public BigDecimal getPrecoDeCusto() {
-        return precoDeCusto;
-    }
-
-    public void setPrecoDeCusto(BigDecimal precoDeCusto) {
-        this.precoDeCusto = precoDeCusto;
-    }
-
-    public BigDecimal getPrecoDeVenda() {
-        return precoDeVenda;
-    }
-
-    public void setPrecoDeVenda(BigDecimal precoDeVenda) {
-        this.precoDeVenda = precoDeVenda;
-    }
-
-    public Integer getEstoqueAtual() {
-        return estoqueAtual;
-    }
-
-    public void setEstoqueAtual(Integer estoqueAtual) {
-        this.estoqueAtual = estoqueAtual;
-    }
-
-    public Integer getEstoqueMinimo() {
-        return estoqueMinimo;
-    }
-
-    public void setEstoqueMinimo(Integer estoqueMinimo) {
-        this.estoqueMinimo = estoqueMinimo;
     }
 }
