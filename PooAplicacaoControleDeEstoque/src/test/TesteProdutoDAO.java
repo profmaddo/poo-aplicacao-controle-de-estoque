@@ -1,5 +1,6 @@
 package test;
 
+import dao.CategoriaDAO;
 import dao.ProdutoDAO;
 import model.Categoria;
 import model.Fornecedor;
@@ -13,6 +14,7 @@ public class TesteProdutoDAO {
 
     public static void main(String[] args) {
         ProdutoDAO produtoDAO = new ProdutoDAO();
+        CategoriaDAO categoriaDAO = new CategoriaDAO();
 
         // Vamos supor que já existam Categoria, UnidadeMedida e Fornecedor com ID 1
         Categoria categoria = new Categoria();
