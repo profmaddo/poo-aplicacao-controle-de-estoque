@@ -25,7 +25,7 @@ public class MenuSistemaDeEstoqueV1 {
 
         do {
             System.out.println("\n======================================");
-            System.out.println("         Sistema de Estoque");
+            System.out.println("         |Sistema de Estoque|");
             System.out.println("======================================");
             System.out.println("1 - Gerenciar Categoria");
             System.out.println("2 - Gerenciar Unidade de Medida");
