@@ -39,7 +39,7 @@ public class MenuSistemaDeEstoqueV1 {
             switch (opcao) {
                 case 1 -> submenuCategoria(categoriaDAO, scanner);
                 case 2 -> submenuUnidadeMedida(UnidadeDeMedidaDAO, scanner);
-                case 3 -> submenuProduto(produtoDAO, scanner);
+                case 3 -> submenuProduto(produtoDAO,categoriaDAO, scanner);
                 case 4 -> submenuFornecedor(fornecedorDAO, scanner);
                 case 5 -> submenuUsuario(usuarioDAO, scanner);
                 case 6 -> submenuMovimentacao(movimentacaoDAO, scanner);
@@ -60,6 +60,8 @@ public class MenuSistemaDeEstoqueV1 {
             System.out.println("\n=== Menu Categoria ===");
             System.out.println("1 - Cadastrar Categoria");
             System.out.println("2 - Listar Categorias");
+            System.out.println("3 - Atualizar Categoria");
+            System.out.println("4 - Deletar Categoria");
             System.out.println("0 - Voltar");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
@@ -79,6 +81,26 @@ public class MenuSistemaDeEstoqueV1 {
                     for (Categoria c : categorias) {
                         System.out.println("ID: " + c.getId() + " | Nome: " + c.getNome());
                     }
+                }
+                case 3 -> {
+                    System.out.print("ID da categoria para atualizar: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    Categoria categoria = categoriaDAO.buscarPorId(id);
+                    if (categoria != null) {
+                        System.out.print("Novo nome da categoria: ");
+                        String novoNome = scanner.nextLine();
+                        categoria.setNome(novoNome);
+                        categoriaDAO.atualizar(categoria);
+                    } else {
+                        System.out.println("⚠️ Categoria não encontrada.");
+                    }
+                }
+                case 4 -> {
+                    System.out.print("ID da categoria para deletar: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    categoriaDAO.deletar(id);
                 }
                 case 0 -> System.out.println("Voltando...");
                 default -> System.out.println("⚠️ Opção inválida.");
@@ -118,12 +140,14 @@ public class MenuSistemaDeEstoqueV1 {
         } while (opcao != 0);
     }
 
-    private static void submenuProduto(ProdutoDAO produtoDAO, Scanner scanner) {
+    private static void submenuProduto(ProdutoDAO produtoDAO, CategoriaDAO categoriaDAO, Scanner scanner) {
         int opcao;
         do {
             System.out.println("\n=== Menu Produto ===");
             System.out.println("1 - Cadastrar Produto");
             System.out.println("2 - Listar Produtos");
+            System.out.println("3 - Atualizar Produto");
+            System.out.println("4 - Deletar Produto");
             System.out.println("0 - Voltar");
             System.out.print("Escolha uma opção: ");
             opcao = scanner.nextInt();
@@ -170,6 +194,29 @@ public class MenuSistemaDeEstoqueV1 {
                     for (Produto p : produtos) {
                         System.out.println("ID: " + p.getId() + " | Nome: " + p.getNome() + " | Preço Venda: R$" + p.getPrecoVenda());
                     }
+                }
+                case 3 -> {
+                    System.out.print("ID do produto para atualizar: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    Produto produto = produtoDAO.buscarPorId(id);
+                    if (produto != null) {
+
+                        System.out.print("Novo nome do produto: ");
+                        produto.setNome(scanner.nextLine());
+
+                        System.out.print("Novo preço de venda: ");
+                        produto.setPrecoVenda(scanner.nextBigDecimal());
+                        produtoDAO.atualizar(produto);
+                    } else {
+                        System.out.println("⚠️ Produto não encontrado.");
+                    }
+                }
+                case 4 -> {
+                    System.out.print("ID do produto para deletar: ");
+                    int id = scanner.nextInt();
+                    scanner.nextLine();
+                    produtoDAO.deletar(id);
                 }
                 case 0 -> System.out.println("Voltando...");
                 default -> System.out.println("⚠️ Opção inválida.");

@@ -1,7 +1,10 @@
 package dao;
 
 import database.ConexaoSQLite;
+import model.Categoria;
+import model.Fornecedor;
 import model.Produto;
+import model.UnidadeDeMedida;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -32,8 +35,15 @@ public class ProdutoDAO {
 
     // Buscar produto por ID
     public Produto buscarPorId(int id) {
+
+        Produto produto = new Produto();
+        Categoria categoria = new Categoria();
+        UnidadeDeMedida unidadeDeMedida = new UnidadeDeMedida();
+        Fornecedor fornecedor = new Fornecedor();
+
         String sql = "SELECT * FROM produtos WHERE id = ?";
-        Produto produto = null;
+
+
         try (Connection conn = ConexaoSQLite.conectar();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, id);
@@ -42,17 +52,73 @@ public class ProdutoDAO {
                 produto = new Produto();
                 produto.setId(rs.getInt("id"));
                 produto.setNome(rs.getString("nome"));
+                System.out.println(rs.getInt("categoria_id"));
                 // Aqui estamos apenas setando os IDs relacionados (não buscando objetos completos)
                 produto.setPrecoCusto(rs.getBigDecimal("preco_custo"));
                 produto.setPrecoVenda(rs.getBigDecimal("preco_venda"));
                 produto.setEstoqueMinimo(rs.getInt("estoque_minimo"));
                 produto.setEstoqueAtual(rs.getInt("estoque_atual"));
+                // Categoria categoria = categoriaDAO.buscarPorId(rs.getInt("categoria_id"));
+
+                sql = "SELECT * FROM categorias WHERE id = ?";
+
+                try {
+                    PreparedStatement pstmtCategoria = conn.prepareStatement(sql);
+                    pstmtCategoria.setInt(1, rs.getInt("categoria_id"));
+                    ResultSet rsCategoria = pstmtCategoria.executeQuery();
+                    if (rsCategoria.next()) {
+                        categoria = new Categoria();
+                        categoria.setId(rsCategoria.getInt("id"));
+                        categoria.setNome(rsCategoria.getString("nome"));
+                    }
+                } catch (SQLException e) {
+                    System.out.println("❌ Erro ao buscar categoria: " + e.getMessage());
+                }
+
+                // Unidade de Medida
+                sql = "SELECT * FROM unidades_medida WHERE id = ?";
+                try {
+                    PreparedStatement pstmtUnidade = conn.prepareStatement(sql);
+                    pstmtUnidade.setInt(1, rs.getInt("unidade_medida_id"));
+                    ResultSet rsUnidade = pstmtUnidade.executeQuery();
+                    if (rsUnidade.next()) {
+                        unidadeDeMedida = new UnidadeDeMedida();
+                        unidadeDeMedida.setId(rsUnidade.getInt("id"));
+                        unidadeDeMedida.setDescricao(rsUnidade.getString("descricao"));
+                    }
+                } catch (SQLException e) {
+                    System.out.println("❌ Erro ao buscar unidade de medida: " + e.getMessage());
+                }
+
+                // Fornecedor do Produto;
+
+                sql = "SELECT * FROM fornecedores WHERE id = ?";
+                try {
+                    PreparedStatement pstmtFornecedor = conn.prepareStatement(sql);
+                    pstmtFornecedor.setInt(1, rs.getInt("fornecedor_id"));
+                    ResultSet rsFornecedor = pstmtFornecedor.executeQuery();
+                    if (rsFornecedor.next()) {
+                        fornecedor.setId(rsFornecedor.getInt("id"));
+                        fornecedor.setNome(rsFornecedor.getString("nome"));
+                        fornecedor.setCnpj(rsFornecedor.getString("cnpj"));
+                        fornecedor.setContato(rsFornecedor.getString("contato"));
+                        fornecedor.setEmail(rsFornecedor.getString("email"));
+                    }
+                } catch (SQLException e) {
+                    System.out.println("❌ Erro ao buscar fornecedor: " + e.getMessage());
+                }
+
+
+                produto.setCategoria(categoria);
+                produto.setUnidadeMedida(unidadeDeMedida);
+                produto.setFornecedor(fornecedor);
             }
         } catch (SQLException e) {
-            System.out.println("❌ Erro ao buscar produto: " + e.getMessage());
+            System.out.println("❌ Erro ao buscar categoria: " + e.getMessage());
         }
         return produto;
     }
+
 
     // Listar todos os produtos
     public List<Produto> listarTodos() {
