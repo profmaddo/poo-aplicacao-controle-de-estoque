@@ -17,9 +17,9 @@ public class ProdutoDAO {
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, produto.getNome());
             pstmt.setInt(2, produto.getCategoria().getId());
-            pstmt.setInt(3, produto.getUnidadeDeMedida().getId());
-            pstmt.setBigDecimal(4, produto.getPrecoDeCusto());
-            pstmt.setBigDecimal(5, produto.getPrecoDeVenda());
+            pstmt.setInt(3, produto.getUnidadeMedida().getId());
+            pstmt.setBigDecimal(4, produto.getPrecoCusto());
+            pstmt.setBigDecimal(5, produto.getPrecoVenda());
             pstmt.setInt(6, produto.getEstoqueMinimo());
             pstmt.setInt(7, produto.getEstoqueAtual());
             pstmt.setInt(8, produto.getFornecedor().getId());
@@ -43,8 +43,8 @@ public class ProdutoDAO {
                 produto.setId(rs.getInt("id"));
                 produto.setNome(rs.getString("nome"));
                 // Aqui estamos apenas setando os IDs relacionados (não buscando objetos completos)
-                produto.setPrecoDeCusto(rs.getBigDecimal("preco_custo"));
-                produto.setPrecoDeVenda(rs.getBigDecimal("preco_venda"));
+                produto.setPrecoCusto(rs.getBigDecimal("preco_custo"));
+                produto.setPrecoVenda(rs.getBigDecimal("preco_venda"));
                 produto.setEstoqueMinimo(rs.getInt("estoque_minimo"));
                 produto.setEstoqueAtual(rs.getInt("estoque_atual"));
             }
@@ -65,8 +65,8 @@ public class ProdutoDAO {
                 Produto produto = new Produto();
                 produto.setId(rs.getInt("id"));
                 produto.setNome(rs.getString("nome"));
-                produto.setPrecoDeCusto(rs.getBigDecimal("preco_custo"));
-                produto.setPrecoDeCusto(rs.getBigDecimal("preco_venda"));
+                produto.setPrecoCusto(rs.getBigDecimal("preco_custo"));
+                produto.setPrecoVenda(rs.getBigDecimal("preco_venda"));
                 produto.setEstoqueMinimo(rs.getInt("estoque_minimo"));
                 produto.setEstoqueAtual(rs.getInt("estoque_atual"));
                 produtos.add(produto);
@@ -85,9 +85,9 @@ public class ProdutoDAO {
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, produto.getNome());
             pstmt.setInt(2, produto.getCategoria().getId());
-            pstmt.setInt(3, produto.getUnidadeDeMedida().getId());
-            pstmt.setBigDecimal(4, produto.getPrecoDeCusto());
-            pstmt.setBigDecimal(5, produto.getPrecoDeVenda());
+            pstmt.setInt(3, produto.getUnidadeMedida().getId());
+            pstmt.setBigDecimal(4, produto.getPrecoCusto());
+            pstmt.setBigDecimal(5, produto.getPrecoVenda());
             pstmt.setInt(6, produto.getEstoqueMinimo());
             pstmt.setInt(7, produto.getEstoqueAtual());
             pstmt.setInt(8, produto.getFornecedor().getId());
