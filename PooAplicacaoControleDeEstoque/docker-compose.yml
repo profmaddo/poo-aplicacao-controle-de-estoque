@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  sistema-estoque:
+    build: .
+    container_name: sistema_estoque
+    working_dir: /app
+    volumes:
+      - ./data:/app/data         # Banco persistente
+    command: ["java", "br.com.estoque.SistemaDeEstoque"]
+    restart: unless-stopped
