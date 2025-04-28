@@ -1,5 +1,5 @@
 # Dockerfile para Sistema de Controle de Estoque
-FROM openjdk:17-slim
+FROM openjdk:22
 
 LABEL authors="marcomaddo"
 
@@ -12,5 +12,6 @@ COPY app/ /app
 # Copia o banco de dados para um volume (se vazio)
 COPY data/ /app/data/
 
+
 # Comando para executar o sistema (exemplo para .class, depois mostro para .jar também)
-CMD ["java", "br.com.estoque.SistemaDeEstoque"]
+CMD ["java", "MenuSistemaDeEstoqueV1"]
