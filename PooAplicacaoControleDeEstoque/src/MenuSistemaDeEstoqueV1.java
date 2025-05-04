@@ -1,4 +1,5 @@
 import dao.*;
+import database.CriarTabelasSQLite;
 import helper.Util;
 import model.*;
 
@@ -9,6 +10,8 @@ import java.util.Scanner;
 public class MenuSistemaDeEstoqueV1 {
 
     public static void main(String[] args) {
+
+        CriarTabelasSQLite.criarTabelas();
 
         Scanner scanner = new Scanner(System.in);
         int opcao;
@@ -21,7 +24,7 @@ public class MenuSistemaDeEstoqueV1 {
         MovimentacaoDAO movimentacaoDAO = new MovimentacaoDAO();
 
         // 🔒 Tela de login antes de liberar o sistema
-        Usuario usuarioLogado = telaLogin(scanner, usuarioDAO);
+      //   Usuario usuarioLogado = telaLogin(scanner, usuarioDAO);
 
         do {
             System.out.println("\n======================================");
